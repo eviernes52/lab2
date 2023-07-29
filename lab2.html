@@ -4,18 +4,86 @@
         <meta charset="UTF-8">
         <title>Lab 2</title>
         <link rel="stylesheet" href="lab2.css">
+        <!--Style Starts-->
         <style>
-            
+            body{
+                text-align: center;
+            }
+            form{
+                padding-top: 10%;
+                padding-left:40%;
+                padding-right:10%;
+                display: inline-block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .form{
+                display: block;
+                text-align: left;
+            }
         </style>
+        <!--Style Ends-->
+
+        <!--script starts-->
+        <script>
+            var output;
+            function buttonClicked()
+            {
+                //when Submitbutton is clicked call button click
+                var valtext = document.getElementById("theTextArea").value;
+                
+                // variables for Password 
+                var valpass = document.getElementById("password").value;
+                var upperFoundPass = valpass.indexOf("");
+                var lowerFoundPass = valpass.indexOf("");
+                var numberFoundPass = valpass.indexOf("");
+
+                //Username
+                //determine if text only contains only lower-case letters
+
+                //Password
+                //detemine if password contains at least one  upper, lower case letters, and a number if so write success else write failiure
+
+
+
+                //Student ID
+                //determine if thee text contains only letters and 9 digits long
+
+                //Start Semester and Year
+                //if semester starts with "Fall" or "Summer" or "Spring" and ends with 2/4-digit year write success else write failiure
+                //Loop method
+                for (var i = 0;)
+
+                //Enter Message, if message has at most 25 write success 
+
+
+            }
+
+            function start()
+            {
+                document.getElementById("Submitbutton").addEventListener("click",buttonClicked);
+                output = document.getElementById("result");
+            }
+            window.addEventListener("load",start);
+        </script>
+        <!--script ends-->
     </head>
     <body>
-        <form>
-            <label for="username">Username:</label><br>
-            <input type="text" id="username" name ="username"><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name ="password"><br>
-            <label for="ID">Student ID:</label><br>
-            <input type="text" id="ID" name ="ID"><br>
+        <form class = "form" method ="get">
+            <label for="username">Username: <input type="text" id="username" name ="username"><br></label><br>
+            
+            <label for="password">Password:  <input type="password" id="password" name ="password"><br></label><br>
+            
+            <label for="ID">Student ID: <input type="text" id="ID" name ="ID"><br></label><br>
+
+            <label>Start Semester and Year: <input  id="startSemester"></input><br></label><br>
+
+            <label>Enter Message Here: <textarea id="theTextArea"></textarea><br></label><br>
+
+            <button type="button" id="button" name="button" onclick="buttonClicked()">Submit</button>
         </form>
+        <hr>
+        <div id="result"></div>
+
     </body>
 </html>
