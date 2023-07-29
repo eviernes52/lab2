@@ -27,49 +27,99 @@
         <!--script starts-->
         <script>
             var output;
+
             function buttonClicked()
             {
-                //when Submitbutton is clicked call button click
-                var valtext = document.getElementById("theTextArea").value;
-                
-                // variables for Password 
-                var valpass = document.getElementById("password").value;
-                var upperFoundPass = valpass.indexOf("");
-                var lowerFoundPass = valpass.indexOf("");
-                var numberFoundPass = valpass.indexOf("");
+                //Result
+                var result = document.getElementById("result");
 
                 //Username
                 //determine if text only contains only lower-case letters
 
                 //Password
                 //detemine if password contains at least one  upper, lower case letters, and a number if so write success else write failiure
-
-
-
+                //var valpass = document.getElementById("password").value;
+                //var sawPassUpper = false;
+                //var sawPassLower = false;
+                //var sawPassNumber = false;
+                //var upperFoundPass = valpass.indexOf("");
+                //var lowerFoundPass = valpass.indexOf("");
+                //var numberFoundPass = valpass.indexOf("");
+                //for (var i = 0; i < valpass.length; i++)
+   
                 //Student ID
                 //determine if thee text contains only letters and 9 digits long
+
 
                 //Start Semester and Year
                 //if semester starts with "Fall" or "Summer" or "Spring" and ends with 2/4-digit year write success else write failiure
                 //Loop method
-                for (var i = 0;)
+                //for (var i = 0;)
+                
 
                 //Enter Message, if message has at most 25 write success 
+                var valtextArea = document.getElementById("theTextArea").value;
+                var  validLength = false;
+                for (var i = 0; i < valtextArea.length; i++)
+                {
+                    if (valtextArea.length <= 25)
+                    {
+                       validLength = true
+                    }
+                    else
+                    {
+                        validLength = false
+                    }
+                }
+
+                if (validLength)
+                    {
+                        result.innerHTML = "Message Success";
+                    }
+                    else
+                    {
+                        result.innerHTML = "Message Failiure";
+                    }
+
+            } //end of buttonClicked
 
 
+            // Function for Message
+            function keyPressed(event)
+            {
+                var keyCodePressed = event.which || event.keyCode;
+                if (keyCodePressed === 8)
+                {
+                    var result = document.getElementById("result");
+                    result.innerHTML = "You pressed backspace";
+                }
+                var currText = document.getElementById("theTextArea").value;
+                var words = currText.split(" ");
+                var numWords = words.length;
+                document.getElementById("numwords").innerHTML = numWords;
             }
 
+            //Function for start
             function start()
             {
                 document.getElementById("Submitbutton").addEventListener("click",buttonClicked);
+
                 output = document.getElementById("result");
+
+                document.getElementById("theTextArea").addEventListener("keydown", keyPressed);
             }
+
             window.addEventListener("load",start);
         </script>
         <!--script ends-->
     </head>
+
+
+
+
     <body>
-        <form class = "form" method ="get">
+         <!--<form class = "form" method ="get">-->
+        <form method ="get">
             <label for="username">Username: <input type="text" id="username" name ="username"><br></label><br>
             
             <label for="password">Password:  <input type="password" id="password" name ="password"><br></label><br>
@@ -80,10 +130,11 @@
 
             <label>Enter Message Here: <textarea id="theTextArea"></textarea><br></label><br>
 
-            <button type="button" id="button" name="button" onclick="buttonClicked()">Submit</button>
+            <button type="button" id="Submitbutton" name="button" onclick="buttonClicked()">Submit</button>
         </form>
         <hr>
-        <div id="result"></div>
-
+        <strong>Result (S or F)</strong> <div id="result"></div>
+        <hr>
+        Number of words: <span id="numwords"></span>
     </body>
 </html>
