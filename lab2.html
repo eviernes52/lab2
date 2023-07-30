@@ -27,11 +27,12 @@
         <!--script starts-->
         <script>
             var output;
-
+            
+            //form submission time
             function buttonClicked()
             {
-                //Result
-                var result = document.getElementById("result");
+                var MessageResults = document.getElementById("MessageResults");
+                var studIDresults = document.getElementById("studIDresults");
 
                 //Username
                 //determine if text only contains only lower-case letters
@@ -49,7 +50,28 @@
    
                 //Student ID
                 //determine if thee text contains only letters and 9 digits long
+                var valstudID = document.getElementById("studID").value;
+                var validstudIDLength = false;
+                for (var i = 0; i < valstudID.length; i++)
+                {
+                    if (valstudID.length === 9)
+                    {
+                        validstudIDLength = true;
+                    }
+                    else
+                    {
+                        validstudIDLength = false;
+                    }
+                }
 
+                if (validstudIDLength)
+                    {
+                        studIDresults.innerHTML = "Student ID Success";
+                    }
+                    else
+                    {
+                        studIDresults.innerHTML = "Student ID Failiure";
+                    }
 
                 //Start Semester and Year
                 //if semester starts with "Fall" or "Summer" or "Spring" and ends with 2/4-digit year write success else write failiure
@@ -74,11 +96,11 @@
 
                 if (validLength)
                     {
-                        result.innerHTML = "Message Success";
+                        MessageResults.innerHTML = "Message Success";
                     }
                     else
                     {
-                        result.innerHTML = "Message Failiure";
+                        MessageResults.innerHTML = "Message Failiure";
                     }
 
             } //end of buttonClicked
@@ -90,13 +112,21 @@
                 var keyCodePressed = event.which || event.keyCode;
                 if (keyCodePressed === 8)
                 {
-                    var result = document.getElementById("result");
-                    result.innerHTML = "You pressed backspace";
+                    var MessageResults = document.getElementById("MessageResults");
+
                 }
+                //Message Area
                 var currText = document.getElementById("theTextArea").value;
                 var words = currText.split(" ");
                 var numWords = words.length;
                 document.getElementById("numwords").innerHTML = numWords;
+
+                //StuenID Area
+                var currId = document.getElementById("password").value;
+                var ids = currId.split(" ");
+                var numIds = ids.length;
+                document.getElementById("numIds").innerHTML = numIds;
+                
             }
 
             //Function for start
@@ -104,9 +134,12 @@
             {
                 document.getElementById("Submitbutton").addEventListener("click",buttonClicked);
 
-                output = document.getElementById("result");
+                output = document.getElementById("studIDresults");
 
                 document.getElementById("theTextArea").addEventListener("keydown", keyPressed);
+                
+                document.getElementById("studID").addEventListener("keydown", keyPressed);
+
             }
 
             window.addEventListener("load",start);
@@ -124,7 +157,7 @@
             
             <label for="password">Password:  <input type="password" id="password" name ="password"><br></label><br>
             
-            <label for="ID">Student ID: <input type="text" id="ID" name ="ID"><br></label><br>
+            <label for="studID">Student ID: <input type="text" id="studID" name ="studID"><br></label><br>
 
             <label>Start Semester and Year: <input  id="startSemester"></input><br></label><br>
 
@@ -133,8 +166,12 @@
             <button type="button" id="Submitbutton" name="button" onclick="buttonClicked()">Submit</button>
         </form>
         <hr>
-        <strong>Result (S or F)</strong> <div id="result"></div>
+        <strong>Result (S or F)</strong><br><br>
+        <div id="MessageResults"></div><br>
+        <div id="studIDresults"></div>
+
         <hr>
-        Number of words: <span id="numwords"></span>
+        Number of message words: <span id="numwords"></span>
+        <br> <br>
     </body>
 </html>
