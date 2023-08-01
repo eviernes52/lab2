@@ -51,8 +51,8 @@
                 var valusername = document.getElementById("username").value;
                 var validusername = false;
                 for (var i = 0; i < valusername.length; i++)
-                {
-                    if (valusername.charAt(i) !== valusername.charAt(i).toLowerCase())   ///I think toLowerCase() would be better as it checks for num aswell as lower 2 birds 1 stone ?
+                {                                                  //how to make spaces not count as lower case letters ??
+                    if ( valusername.charCodeAt(i) > 97 || valusername.charCodeAt < 12)   ///I think toLowerCase() would be better as it checks for num aswell as lower 2 birds 1 stone ?
                     {
                         validusername = true;
                     }
@@ -91,14 +91,27 @@
                 //determine if thee text contains only letters and 9 digits long
                 var valstudID = document.getElementById("studID").value;
                 var validstudIDLength = false;
+
+                var keyCode = valstudID.keyCode;
+                var keyChar = String.fromCharCode(keyCode);
+               
+              
+
                 for (var i = 0; i < valstudID.length; i++)
                 {
-                    if (valstudID.length === 9 && !isNaN(valstudID))  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
-                    {
-                        validstudIDLength = true;
+                    if (valstudID.length === 9) {
+                        var charCode = valstudID.charCodeAt(i);
+                         if (charCode < 48 || charCode > 57)  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
+                        {
+                            validstudIDLength = false;
+                        }
+                        else
+                        {
+                            validstudIDLength = true;
+                        }
                     }
-                    else
-                    {
+
+                    else {
                         validstudIDLength = false;
                     }
                 }
