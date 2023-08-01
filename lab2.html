@@ -46,31 +46,31 @@
             }
         
 //------------------------------------------------------------------------------------------
-                //Username
-                //determine if text only contains only lower-case letters
-                var valusername = document.getElementById("username").value;
-                var validusername = false;
-                for (var i = 0; i < valusername.length; i++)
-                {                                                  //how to make spaces not count as lower case letters ??
-                    if ( valusername.charCodeAt(i) > 97 || valusername.charCodeAt < 12)   ///I think toLowerCase() would be better as it checks for num aswell as lower 2 birds 1 stone ?
-                    {
-                        validusername = true;
-                    }
-                    else 
-                    {
-                        validusername = true;
-                    
-                    }
+            //Username
+            //determine if text only contains only lower-case letters
+            var valusername = document.getElementById("username").value;
+            var validusername = false;
+            for (var i = 0; i < valusername.length; i++)
+            {                                                  //how to make spaces not count as lower case letters ??
+                if ( valusername.charCodeAt(i) > 97 || valusername.charCodeAt < 12)   ///I think toLowerCase() would be better as it checks for num aswell as lower 2 birds 1 stone ?
+                {
+                    validusername = true;
                 }
+                else 
+                {
+                    validusername = true;
                 
-                if (validusername)
-                    {
-                        usernameResults.innerHTML = "Username Success";
-                    }
-                    else
-                    {
-                        usernameResults.innerHTML = "Username Failiure";
-                    }
+                }
+            }
+            
+            if (validusername)
+                {
+                    usernameResults.innerHTML = "Username Success";
+                }
+                else
+                {
+                    usernameResults.innerHTML = "Username Failiure";
+                }
 
 
 //------------------------------------------------------------------------------------------
@@ -87,45 +87,37 @@
 
 
 //------------------------------------------------------------------------------------------   
-                //Student ID
-                //determine if thee text contains only letters and 9 digits long
-                var valstudID = document.getElementById("studID").value;
-                var validstudIDLength = false;
-
-                var keyCode = valstudID.keyCode;
-                var keyChar = String.fromCharCode(keyCode);
-               
-              
-
-                for (var i = 0; i < valstudID.length; i++)
-                {
-                    if (valstudID.length === 9) {
-                        var charCode = valstudID.charCodeAt(i);
-                         if (charCode < 48 || charCode > 57)  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
-                        {
-                            validstudIDLength = false;
-                        }
-                        else
-                        {
-                            validstudIDLength = true;
-                        }
-                    }
-
-                    else {
+            //Student ID
+            //determine if thee text contains only letters and 9 digits long
+            var valstudID = document.getElementById("studID").value;
+            var validstudIDLength = false;
+            
+            for (var i = 0; i < valstudID.length; i++)  //declare loop scanning through all studID characters
+            {
+                if (valstudID.length === 9) {           //if not 9 characters long then failiure
+                    var idChar = valstudID.charAt(i);   //declare variable for each character in studID
+                        if (idChar < '0' || idChar > '9')  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
+                    {                                   //basically copied the keycode keychar example from class and repalced isNaN
                         validstudIDLength = false;
-                    }
-                }
-
-                if (validstudIDLength)
-                    {
-                        studIDresults.innerHTML = "Student ID Success";
                     }
                     else
                     {
-                        studIDresults.innerHTML = "Student ID Failiure";
+                        validstudIDLength = true;
                     }
-
-
+                }
+                else {
+                    validstudIDLength = false;
+                }
+            }
+            //basic loop for if validation is true or false to print out intnernalHTML message
+            if (validstudIDLength)
+                {
+                    studIDresults.innerHTML = "Student ID Success";
+                }
+                else
+                {
+                    studIDresults.innerHTML = "Student ID Failiure";
+                }
 
 //------------------------------------------------------------------------------------------
                 //Start Semester and Year
@@ -157,31 +149,15 @@
                 //Enter Message, if message has at most 25 write success
                 //potential error with double back to back spacing but ok for now without regex
                 //tried using numwords instead (ask if user must type in or can copy paste ?)
-                var valtextArea = document.getElementById("theTextArea").value;
-                var  validLength = false;
-                for (var i = 0; i < valtextArea.length; i++)
-                {
-                    if (valtextArea.length <= 25)
-                    {
-                       validLength = true
-                    }
-                    else
-                    {
-                        validLength = false
-                    }
-                }
-
-                if (validLength)
-                    {
-                        MessageResults.innerHTML = "Message Success";
-                    }
-                    else
-                    {
-                        MessageResults.innerHTML = "Message Failiure";
-                    }
-
             } //end of buttonClicked
 
+            //form submit function
+            /*function formSubmitted()
+            {
+                var form = document.getElementById("form");
+                form.submit();
+            }
+            */
 
             // Function for Message
             function keyPressed(event)
@@ -197,6 +173,35 @@
                 var words = currText.split(" ");
                 var numWords = words.length;
                 document.getElementById("numwords").innerHTML = numWords;
+                var messageValid
+                if (numWords > 25)
+                    {
+                         messageValid = false;
+                         document.getElementById("theTextArea").disabled = true;
+                    }
+                else if ( numWords === 25)
+                    {
+                        messageValid = true;
+                        document.getElementById("theTextArea").disabled = true;
+                    }
+                else
+                    {
+                        messageValid = true;
+                        //nummy.innerHTML = "numWords";
+                    }
+                    //message validity check
+                    if (messageValid)
+                        {
+                            nummy.innerHTML = "Message Success";
+                            console.log(numwords);
+                        }
+                    else
+                        {
+                            nummy.innerHTML = "Message Failiure";
+                            console.log(numwords);
+                        }
+
+
 
                 //StuenID Area
                 var currId = document.getElementById("password").value;
@@ -244,7 +249,7 @@
         </form>
         <hr>
         <strong>Result (S or F)</strong><br><br>
-        <div id="MessageResults"></div><br>
+        <div id="MessageResults"></div> <div id ="nummy"></div><br>
         <div id="studIDresults"></div><br>
         <div id="semesterResults"></div><br>
         <div id="usernameResults"></div><br>
