@@ -24,7 +24,7 @@
         </style>
         <!--Style Ends-->
 
-        <!--script starts-->
+        <!--Script Starts-->
         <script>
             var output;
             
@@ -33,10 +33,47 @@
             {
                 var MessageResults = document.getElementById("MessageResults");
                 var studIDresults = document.getElementById("studIDresults");
-
+//-------------------------------------TOTAL RESULTS----------------------------------------
+            var valtotalResults = document.getElementById("totalResults").value;
+            var validtotalResults = false;
+            if (validusername && validstudIDLength && validSemester && validLength == true)
+            {
+                totalResults.innerHTML = "SUCCESS";
+            }
+            else
+            {
+                totalResults.innerHTML = "FAILIURE";
+            }
+        
+//------------------------------------------------------------------------------------------
                 //Username
                 //determine if text only contains only lower-case letters
+                var valusername = document.getElementById("username").value;
+                var validusername = false;
+                for (var i = 0; i < valusername.length; i++)
+                {
+                    if (valusername.charAt(i) !== valusername.charAt(i).toLowerCase())   ///I think toLowerCase() would be better as it checks for num aswell as lower 2 birds 1 stone ?
+                    {
+                        validusername = true;
+                    }
+                    else 
+                    {
+                        validusername = true;
+                    
+                    }
+                }
+                
+                if (validusername)
+                    {
+                        usernameResults.innerHTML = "Username Success";
+                    }
+                    else
+                    {
+                        usernameResults.innerHTML = "Username Failiure";
+                    }
 
+
+//------------------------------------------------------------------------------------------
                 //Password
                 //detemine if password contains at least one  upper, lower case letters, and a number if so write success else write failiure
                 //var valpass = document.getElementById("password").value;
@@ -47,14 +84,16 @@
                 //var lowerFoundPass = valpass.indexOf("");
                 //var numberFoundPass = valpass.indexOf("");
                 //for (var i = 0; i < valpass.length; i++)
-   
+
+
+//------------------------------------------------------------------------------------------   
                 //Student ID
                 //determine if thee text contains only letters and 9 digits long
                 var valstudID = document.getElementById("studID").value;
                 var validstudIDLength = false;
                 for (var i = 0; i < valstudID.length; i++)
                 {
-                    if (valstudID.length === 9)
+                    if (valstudID.length === 9 && !isNaN(valstudID))  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
                     {
                         validstudIDLength = true;
                     }
@@ -73,13 +112,38 @@
                         studIDresults.innerHTML = "Student ID Failiure";
                     }
 
+
+
+//------------------------------------------------------------------------------------------
                 //Start Semester and Year
                 //if semester starts with "Fall" or "Summer" or "Spring" and ends with 2/4-digit year write success else write failiure
                 //Loop method
                 //for (var i = 0;)
-                
+                var valstartSemester = document.getElementById("startSemester").value;
+                var validSemester = false;
+             /*   for (var i = 0; i < valstartSemester.length; i++)
+                {
+                    if (valstartSemester.charAt(i) === "F" || "S" || "S" && charAt(i) ===)
+                    {
+                        validSemester = true;
+                    }
+                    else if (valstartSemester.charAt(i) != .toUpperCase)
+                    {
 
-                //Enter Message, if message has at most 25 write success 
+                    }
+                    else
+                    {
+                        validSemester = false;
+                    }
+                }
+
+
+
+//------------------------------------------------------------------------------------------
+                */
+                //Enter Message, if message has at most 25 write success
+                //potential error with double back to back spacing but ok for now without regex
+                //tried using numwords instead (ask if user must type in or can copy paste ?)
                 var valtextArea = document.getElementById("theTextArea").value;
                 var  validLength = false;
                 for (var i = 0; i < valtextArea.length; i++)
@@ -140,15 +204,15 @@
                 
                 document.getElementById("studID").addEventListener("keydown", keyPressed);
 
+                //document.getElementById("startSemester").addEventListener("keydown", keyPressed);
+
+                document.getElementById("username").addEventListener("keydown", keyPressed);
             }
 
-            window.addEventListener("load",start);
+            window.addEventListener("load",start);  // initialize function when page loads
         </script>
         <!--script ends-->
     </head>
-
-
-
 
     <body>
          <!--<form class = "form" method ="get">-->
@@ -168,10 +232,14 @@
         <hr>
         <strong>Result (S or F)</strong><br><br>
         <div id="MessageResults"></div><br>
-        <div id="studIDresults"></div>
-
+        <div id="studIDresults"></div><br>
+        <div id="semesterResults"></div><br>
+        <div id="usernameResults"></div><br>
         <hr>
         Number of message words: <span id="numwords"></span>
         <br> <br>
+
+        <hr>
+        <strong>All forms Results<br><div id="totalResults"></div></strong>
     </body>
 </html>
