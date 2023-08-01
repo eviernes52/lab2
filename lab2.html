@@ -44,7 +44,6 @@
             {
                 totalResults.innerHTML = "FAILIURE";
             }
-        
 //------------------------------------------------------------------------------------------
             //Username
             //determine if text only contains only lower-case letters
@@ -71,8 +70,6 @@
                 {
                     usernameResults.innerHTML = "Username Failiure";
                 }
-
-
 //------------------------------------------------------------------------------------------
                 //Password
                 //detemine if password contains at least one  upper, lower case letters, and a number if so write success else write failiure
@@ -84,8 +81,6 @@
                 //var lowerFoundPass = valpass.indexOf("");
                 //var numberFoundPass = valpass.indexOf("");
                 //for (var i = 0; i < valpass.length; i++)
-
-
 //------------------------------------------------------------------------------------------   
             //Student ID
             //determine if thee text contains only letters and 9 digits long
@@ -118,7 +113,6 @@
                 {
                     studIDresults.innerHTML = "Student ID Failiure";
                 }
-
 //------------------------------------------------------------------------------------------
                 //Start Semester and Year
                 //if semester starts with "Fall" or "Summer" or "Spring" and ends with 2/4-digit year write success else write failiure
@@ -141,14 +135,9 @@
                         validSemester = false;
                     }
                 }
+            */
 
 
-
-//------------------------------------------------------------------------------------------
-                */
-                //Enter Message, if message has at most 25 write success
-                //potential error with double back to back spacing but ok for now without regex
-                //tried using numwords instead (ask if user must type in or can copy paste ?)
             } //end of buttonClicked
 
             //form submit function
@@ -192,12 +181,12 @@
                     //message validity check
                     if (messageValid)
                         {
-                            nummy.innerHTML = "Message Success";
+                            TextAreaResults.innerHTML = "Message Success";
                             console.log(numwords);
                         }
                     else
                         {
-                            nummy.innerHTML = "Message Failiure";
+                            TextAreaResults.innerHTML = "Message Failiure";
                             console.log(numwords);
                         }
 
@@ -249,7 +238,7 @@
         </form>
         <hr>
         <strong>Result (S or F)</strong><br><br>
-        <div id="MessageResults"></div> <div id ="nummy"></div><br>
+        <div id="MessageResults"></div> <div id ="TextAreaResults"></div><br>
         <div id="studIDresults"></div><br>
         <div id="semesterResults"></div><br>
         <div id="usernameResults"></div><br>
