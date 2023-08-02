@@ -34,25 +34,6 @@
                 var MessageResults = document.getElementById("MessageResults");
                 var studIDresults = document.getElementById("studIDresults");
 //-------------------------------------TOTAL RESULTS----------------------------------------
-            var valtotalResults = document.getElementById("totalResults");
-            if (validusername && validstudIDLength && messageValid)
-            {
-                valtotalResults = true
-            }
-            else
-            {
-                valtotalResults = false
-            }
-
-            if (valtotalResults)
-            {
-                totalResults.innerHTML = "SUCCESS";
-
-            }
-            else
-            {
-                totalResults.innerHTML = "FAILIURE";
-            }
 
 //------------------------------------------------------------------------------------------
             //Username
@@ -93,15 +74,17 @@
                 //for (var i = 0; i < valpass.length; i++)
 //------------------------------------------------------------------------------------------   
             //Student ID
-            //determine if thee text contains only letters and 9 digits long
             var valstudID = document.getElementById("studID").value;
             var validstudIDLength = false;
-            
-            for (var i = 0; i < valstudID.length; i++)  //declare loop scanning through all studID characters
+            if (valstudID.length !== 9) 
             {
-                if (valstudID.length === 9) {           //if not 9 characters long then failiure
-                    var idChar = valstudID.charAt(i);   //declare variable for each character in studID
-                        if (idChar < '0' || idChar > '9')  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
+                validstudIDLength = false;
+            }
+            else {
+                for (var i = 0; i < valstudID.length; i++)  //declare loop scanning through all studID characters
+                {
+                var idChar = valstudID.charAt(i);   //declare variable for each character in studID
+                    if (idChar < '0' || idChar > '9')  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
                     {                                   //basically copied the keycode keychar example from class and repalced isNaN
                         validstudIDLength = false;
                     }
@@ -110,10 +93,8 @@
                         validstudIDLength = true;
                     }
                 }
-                else {
-                    validstudIDLength = false;
                 }
-            }
+            
             //basic loop for if validation is true or false to print out intnernalHTML message
             if (validstudIDLength)
                 {
@@ -146,8 +127,20 @@
                     }
                 }
             */
+//-------------------------------------TOTAL RESULTS----------------------------------------
+            var valtotalResults = false;
+                if (validusername && validstudIDLength) {
+                    valtotalResults = true;
+                } else {
+                    valtotalResults = false;
+                }
 
-
+                if (valtotalResults) {
+                    totalResults.innerHTML = "SUCCESS";
+                } else {
+                    totalResults.innerHTML = "FAILURE";
+                }
+//-------------------------------------END of button Clicked Function----------------------------------------
             } //end of buttonClicked
 
             //form submit function
@@ -186,7 +179,6 @@
                 else
                     {
                         messageValid = true;
-                        //nummy.innerHTML = "numWords";
                     }
                     //message validity check
                     if (messageValid)
