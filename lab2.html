@@ -64,14 +64,41 @@
 //------------------------------------------------------------------------------------------
                 //Password
                 //detemine if password contains at least one  upper, lower case letters, and a number if so write success else write failiure
-                //var valpass = document.getElementById("password").value;
-                //var sawPassUpper = false;
-                //var sawPassLower = false;
-                //var sawPassNumber = false;
-                //var upperFoundPass = valpass.indexOf("");
-                //var lowerFoundPass = valpass.indexOf("");
-                //var numberFoundPass = valpass.indexOf("");
-                //for (var i = 0; i < valpass.length; i++)
+                var valpass = document.getElementById("password").value;
+                for (var i = 0; i < valpass.length; i++){
+                var passChar = valpass.charAt(i);   //declare variable for each character in studID
+                    if (passChar !== '0' - '9')  
+                    {                                   
+                        if (passChar !== 'A' - 'Z') {
+                            validpass = false;
+                        } 
+                        else{
+                            if (passChar !== 'a' - 'z')
+                            {
+                                validpass = false;
+                            }
+                            else
+                            {
+                                validpass = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        validpass = false;
+                    }
+                }
+
+                if (validpass)
+                {
+                    passwordResults.innerHTML = "Password Success";
+                }
+                else
+                {
+                    passwordResults.innerHTML = "Password Failiure";
+                }
+
+
 //------------------------------------------------------------------------------------------   
             //Student ID
             var valstudID = document.getElementById("studID").value;
@@ -93,8 +120,7 @@
                         validstudIDLength = true;
                     }
                 }
-                }
-            
+            }
             //basic loop for if validation is true or false to print out intnernalHTML message
             if (validstudIDLength)
                 {
@@ -142,14 +168,6 @@
                 }
 //-------------------------------------END of button Clicked Function----------------------------------------
             } //end of buttonClicked
-
-            //form submit function
-            /*function formSubmitted()
-            {
-                var form = document.getElementById("form");
-                form.submit();
-            }
-            */
 
             // Function for Message
             function keyPressed(event)
@@ -216,6 +234,8 @@
                 //document.getElementById("startSemester").addEventListener("keydown", keyPressed);
 
                 document.getElementById("username").addEventListener("keydown", keyPressed);
+
+                document.getElementById("password").addEventListener("keydown", keyPressed);
             }
 
             window.addEventListener("load",start);  // initialize function when page loads
@@ -244,6 +264,8 @@
         <div id="studIDresults"></div><br>
         <div id="semesterResults"></div><br>
         <div id="usernameResults"></div><br>
+        <div id="passwordResults"></div><br>
+
         <hr>
         Number of message words: <span id="numwords"></span>
         <br> <br>
