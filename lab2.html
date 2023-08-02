@@ -34,16 +34,26 @@
                 var MessageResults = document.getElementById("MessageResults");
                 var studIDresults = document.getElementById("studIDresults");
 //-------------------------------------TOTAL RESULTS----------------------------------------
-            var valtotalResults = document.getElementById("totalResults").value;
-            var validtotalResults = false;
-            if (validusername && validstudIDLength && validSemester && validLength == true)
+            var valtotalResults = document.getElementById("totalResults");
+            if (validusername && validstudIDLength && messageValid)
+            {
+                valtotalResults = true
+            }
+            else
+            {
+                valtotalResults = false
+            }
+
+            if (valtotalResults)
             {
                 totalResults.innerHTML = "SUCCESS";
+
             }
             else
             {
                 totalResults.innerHTML = "FAILIURE";
             }
+
 //------------------------------------------------------------------------------------------
             //Username
             //determine if text only contains only lower-case letters
@@ -51,13 +61,13 @@
             var validusername = false;
             for (var i = 0; i < valusername.length; i++)
             {                                                  //how to make spaces not count as lower case letters ??
-                if ( valusername.charCodeAt(i) > 97 || valusername.charCodeAt < 12)   ///I think toLowerCase() would be better as it checks for num aswell as lower 2 birds 1 stone ?
+                if ( valusername.charCodeAt(i) >= 97 || valusername.charCodeAt <= 122)   //To lower doesnt work used unicode similar to userID from https://www.ssec.wisc.edu/~tomw/java/unicode.html
                 {
                     validusername = true;
                 }
                 else 
                 {
-                    validusername = true;
+                    validusername = false;
                 
                 }
             }
@@ -191,13 +201,13 @@
                         }
 
 
-
-                //StuenID Area
-                var currId = document.getElementById("password").value;
+                //StudID Area
+                /*
+                var currId = document.getElementById("studID").value;
                 var ids = currId.split(" ");
                 var numIds = ids.length;
-                document.getElementById("numIds").innerHTML = numIds;
-                
+                document.getElementById("numids").innerHTML = numIds;
+                */
             }
 
             //Function for start
