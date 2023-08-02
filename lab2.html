@@ -143,26 +143,46 @@
                 //Loop method
                 //for (var i = 0;)
                 var valstartSemester = document.getElementById("startSemester").value;
+                var valstartYear = document.getElementById("startYear").value;
                 var validSemester = false;
-             /*   for (var i = 0; i < valstartSemester.length; i++)
-                {
-                    if (valstartSemester.charAt(i) === "F" || "S" || "S" && charAt(i) ===)
-                    {
-                        validSemester = true;
-                    }
-                    else if (valstartSemester.charAt(i) != .toUpperCase)
-                    {
+                var validYear = false;
 
-                    }
+                for (var i = 0; i < valstartSemester.length; i++)
+                {
+                    if (valstartSemester.length == 4 && valstartSemester.charAt(0) === "F" && valstartSemester.charAt(1) === "a" && valstartSemester.charAt(2) === "l" && valstartSemester.charAt(3) === "l")
+                   {
+                        validSemester = true;
+                   }
+                   else if (valstartSemester.length == 6 && valstartSemester.charAt(0) === "S" && valstartSemester.charAt(1) === "u" && val.charAt(2) === "m" && valstartSemester.charAt(3) === "m" && valstartSemester.charAt(4) === "m" && valstartSemester.charAt(5) === "e" && valstartSemester.charAt(6) === "r")
+                   {
+                        validSemester = true; 
+                   }
+                    else if (valstartSemester.length == 6 && valstartSemester.charAt(0) === "S" && valstartSemester.charAt(1) === "p" && valstartSemester.charAt(2) === "r" && valstartSemester.charAt(3) === "i" && valstartSemester.charAt(4) === "n" && valstartSemester.charAt(5) === "g")
+                   {
+                        validSemester = true;
+                   }
                     else
-                    {
+                   {
                         validSemester = false;
-                    }
+                   }
                 }
-            */
+
+                if (validSemester)
+                {
+                    semesterResults.innerHTML = "Semester Success";
+                }
+                else
+                {
+                    semesterResults.innerHTML = "Semester Failiure";
+                }
+
+
+
+
+
 //-------------------------------------TOTAL RESULTS----------------------------------------
             var valtotalResults = false;
-                if (validusername && validstudIDLength && validpass) {
+                if (validusername && validstudIDLength && validpass && validSemester) {
                     valtotalResults = true;
                 } else {
                     valtotalResults = false;
@@ -243,6 +263,10 @@
                 document.getElementById("username").addEventListener("keydown", keyPressed);
 
                 document.getElementById("password").addEventListener("keydown", keyPressed);
+
+                document.getElementById("startSemester").addEventListener("keydown", keyPressed);
+
+                document.getElementById("startYear").addEventListener("keydown", keyPressed);
             }
 
             window.addEventListener("load",start);  // initialize function when page loads
@@ -259,7 +283,7 @@
             
             <label for="studID">Student ID: <input type="text" id="studID" name ="studID"><br></label><br>
 
-            <label>Start Semester and Year: <input  id="startSemester"></input><br></label><br>
+            <label>Start Semester: <input  type = "text" id="startSemester"></input><br><br>Start Year: <input  type = "text" id="startYear"></input><br></label><br>
 
             <label>Enter Message Here: <textarea id="theTextArea"></textarea><br></label><br>
 
@@ -272,6 +296,7 @@
         <div id="semesterResults"></div><br>
         <div id="usernameResults"></div><br>
         <div id="passwordResults"></div><br>
+        <div id="startSemesterResults"></div><br>
 
         <hr>
         Number of message words: <span id="numwords"></span>
