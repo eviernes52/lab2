@@ -65,28 +65,35 @@
                 //Password
                 //detemine if password contains at least one  upper, lower case letters, and a number if so write success else write failiure
                 var valpass = document.getElementById("password").value;
-                for (var i = 0; i < valpass.length; i++){
-                var passChar = valpass.charAt(i);   //declare variable for each character in studID
-                    if (passChar !== '0' - '9')  
-                    {                                   
-                        if (passChar !== 'A' - 'Z') {
-                            validpass = false;
-                        } 
-                        else{
-                            if (passChar !== 'a' - 'z')
-                            {
-                                validpass = false;
-                            }
-                            else
-                            {
-                                validpass = true;
-                            }
+                var validpass = false;
+                var validLowerpass = false;
+                var validUpperpass = false;
+                var validNumpass = false;
+
+                for (var i = 0; i < valpass.length; i++)
+                {
+                    var passChar = valpass.charAt(i);   //declare variable for each character in studID
+                    if (passChar >= '0' && passChar <= '9')  
+                    {          
+                        validNumpass = true;  
+                    }                       
+                    else if (passChar >= 'A' && passChar <= 'Z') 
+                        {
+                            validUpperpass = true;
                         }
-                    }
-                    else
-                    {
-                        validpass = false;
-                    }
+                    else if (passChar >= 'a' && passChar <= 'z')
+                            {
+                                validLowerpass = true;
+                            }
+                }   
+
+                if (validNumpass && validUpperpass && validLowerpass)
+                {
+                    validpass = true;
+                }
+                else
+                {
+                    validpass = false;
                 }
 
                 if (validpass)
@@ -155,7 +162,7 @@
             */
 //-------------------------------------TOTAL RESULTS----------------------------------------
             var valtotalResults = false;
-                if (validusername && validstudIDLength) {
+                if (validusername && validstudIDLength && validpass) {
                     valtotalResults = true;
                 } else {
                     valtotalResults = false;
