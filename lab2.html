@@ -180,9 +180,37 @@
 
 
 
+                for (var i = 0; i < valstartYear.length; i++)
+                {
+                    if (valstartYear.length == 4 && valstartYear.charAt(0) <= 50 && valstartYear.charAt(1) <= 48 && valstartYear.charAt(2) <= 50 && valstartYear.charAt(3) <= 51 || valstartYear.length == 4 && valstartYear.charAt(0) <= 49 && valstartYear.charAt(1) <= 57 && valstartYear.charAt(2) <= 57 && valstartYear.charAt(3) <= 57 )
+                   {
+                        validYear = true;
+                   }
+                   else if (valstartYear.length == 2 && valstartYear.charAt(0) == 50 && valstartYear.charAt(1) <= 51 || valstartYear.length == 2 && valstartYear.charAt(0) <= 57 && valstartYear.charAt(1) <= 57 )
+                   {
+                        validYear = true; 
+                   }
+                    else
+                   {
+                        validYear = false;
+                   }
+                }
+
+                if (validYear)
+                {
+                    startYearResults.innerHTML = "Year Success";
+                }
+                else
+                {
+                    startYearResults.innerHTML = "Year Failiure";
+                }
+
+
+
 //-------------------------------------TOTAL RESULTS----------------------------------------
-            var valtotalResults = false;
-                if (validusername && validstudIDLength && validpass && validSemester) {
+                //var messageGlobalResult = document.object.getElementById("messageValid").value;
+                var valtotalResults = false;
+                if (validusername && validstudIDLength && validpass && validSemester && validYear) {
                     valtotalResults = true;
                 } else {
                     valtotalResults = false;
@@ -221,21 +249,26 @@
                         messageValid = true;
                         document.getElementById("theTextArea").disabled = true;
                     }
+
+                else if (numWords === 0)
+                    {
+                        messageValid = false;
+                    }
                 else
                     {
                         messageValid = true;
                     }
                     //message validity check
-                    if (messageValid)
-                        {
-                            TextAreaResults.innerHTML = "Message Success";
-                            console.log(numwords);
-                        }
-                    else
-                        {
-                            TextAreaResults.innerHTML = "Message Failiure";
-                            console.log(numwords);
-                        }
+                if (messageValid)
+                    {
+                        TextAreaResults.innerHTML = "Message Success";
+                        console.log(numwords);
+                    }
+                else
+                    {
+                        TextAreaResults.innerHTML = "Message Failiure";
+                        console.log(numwords);
+                    }
 
 
                 //StudID Area
@@ -251,21 +284,12 @@
             function start()
             {
                 document.getElementById("Submitbutton").addEventListener("click",buttonClicked);
-
                 output = document.getElementById("studIDresults");
-
                 document.getElementById("theTextArea").addEventListener("keydown", keyPressed);
-                
                 document.getElementById("studID").addEventListener("keydown", keyPressed);
-
-                //document.getElementById("startSemester").addEventListener("keydown", keyPressed);
-
                 document.getElementById("username").addEventListener("keydown", keyPressed);
-
                 document.getElementById("password").addEventListener("keydown", keyPressed);
-
                 document.getElementById("startSemester").addEventListener("keydown", keyPressed);
-
                 document.getElementById("startYear").addEventListener("keydown", keyPressed);
             }
 
@@ -293,10 +317,10 @@
         <strong>Result (S or F)</strong><br><br>
         <div id="MessageResults"></div> <div id ="TextAreaResults"></div><br>
         <div id="studIDresults"></div><br>
-        <div id="semesterResults"></div><br>
         <div id="usernameResults"></div><br>
         <div id="passwordResults"></div><br>
-        <div id="startSemesterResults"></div><br>
+        <div id="semesterResults"></div><br>
+        <div id="startYearResults"></div><br>
 
         <hr>
         Number of message words: <span id="numwords"></span>
