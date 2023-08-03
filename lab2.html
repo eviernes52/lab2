@@ -21,7 +21,7 @@
                 display: block;
                 text-align: left;
             }
-            .bgcolor {
+            .bgred {
                 background-color: #fe4e4e;
             }
         </style>
@@ -34,33 +34,36 @@
             //form submission time
             function buttonClicked()
             {
+                var theBody = document.getElementById("theBody");
+
                 var MessageResults = document.getElementById("MessageResults");
                 var studIDresults = document.getElementById("studIDresults");
-         //Username
-            //determine if text only contains only lower-case letters
-            var valusername = document.getElementById("username").value;
-            var validusername = false;
-            for (var i = 0; i < valusername.length; i++)
-            {                                                  //how to make spaces not count as lower case letters ??
-                if ( valusername.charCodeAt(i) >= 97 || valusername.charCodeAt <= 122)   //To lower doesnt work used unicode similar to userID from https://www.ssec.wisc.edu/~tomw/java/unicode.html
-                {
-                    validusername = true;
+
+                //Username
+                //determine if text only contains only lower-case letters
+                var valusername = document.getElementById("username").value;
+                var validusername = false;
+                for (var i = 0; i < valusername.length; i++)
+                {                                                  //how to make spaces not count as lower case letters ??
+                    if ( valusername.charCodeAt(i) >= 97 || valusername.charCodeAt <= 122)   //To lower doesnt work used unicode similar to userID from https://www.ssec.wisc.edu/~tomw/java/unicode.html
+                    {
+                        validusername = true;
+                    }
+                    else 
+                    {
+                        validusername = false;
+                    
+                    }
                 }
-                else 
-                {
-                    validusername = false;
                 
-                }
-            }
-            
-            if (validusername)
-                {
-                    usernameResults.innerHTML = "Username Success";
-                }
-                else
-                {
-                    usernameResults.innerHTML = "Username Failiure";
-                }
+                if (validusername)
+                    {
+                        usernameResults.innerHTML = "Username Success";
+                    }
+                    else
+                    {
+                        usernameResults.innerHTML = "Username Failiure";
+                    }
 //------------------------------------------------------------------------------------------
                 //Password
                 //detemine if password contains at least one  upper, lower case letters, and a number if so write success else write failiure
@@ -110,33 +113,33 @@
             //Student ID
             var valstudID = document.getElementById("studID").value;
             var validstudIDLength = false;
-            if (valstudID.length !== 9) 
-            {
-                validstudIDLength = false;
-            }
-            else {
-                for (var i = 0; i < valstudID.length; i++)  //declare loop scanning through all studID characters
+                if (valstudID.length !== 9) 
                 {
-                var idChar = valstudID.charAt(i);   //declare variable for each character in studID
-                    if (idChar < '0' || idChar > '9')  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
-                    {                                   //basically copied the keycode keychar example from class and repalced isNaN
-                        validstudIDLength = false;
+                    validstudIDLength = false;
+                }
+                else {
+                    for (var i = 0; i < valstudID.length; i++)  //declare loop scanning through all studID characters
+                    {
+                    var idChar = valstudID.charAt(i);   //declare variable for each character in studID
+                        if (idChar < '0' || idChar > '9')  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
+                        {                                   //basically copied the keycode keychar example from class and repalced isNaN
+                            validstudIDLength = false;
+                        }
+                        else
+                        {
+                            validstudIDLength = true;
+                        }
+                    }
+                }
+                //basic loop for if validation is true or false to print out intnernalHTML message
+                if (validstudIDLength)
+                    {
+                        studIDresults.innerHTML = "Student ID Success";
                     }
                     else
                     {
-                        validstudIDLength = true;
+                        studIDresults.innerHTML = "Student ID Failiure";
                     }
-                }
-            }
-            //basic loop for if validation is true or false to print out intnernalHTML message
-            if (validstudIDLength)
-                {
-                    studIDresults.innerHTML = "Student ID Success";
-                }
-                else
-                {
-                    studIDresults.innerHTML = "Student ID Failiure";
-                }
 //------------------------------------------------------------------------------------------
                 //Start Semester and Year
                 //if semester starts with "Fall" or "Summer" or "Spring" and ends with 2/4-digit year write success else write failiure
@@ -150,21 +153,21 @@
                 for (var i = 0; i < valstartSemester.length; i++)
                 {
                     if (valstartSemester.length == 4 && valstartSemester.charAt(0) === "F" && valstartSemester.charAt(1) === "a" && valstartSemester.charAt(2) === "l" && valstartSemester.charAt(3) === "l")
-                   {
+                    {
                         validSemester = true;
-                   }
-                   else if (valstartSemester.length == 6 && valstartSemester.charAt(0) === "S" && valstartSemester.charAt(1) === "u" && valstartSemester.charAt(2) === "m" && valstartSemester.charAt(3) === "m" && valstartSemester.charAt(4) === "e" && valstartSemester.charAt(5) === "r")
-                   {
+                    }
+                    else if (valstartSemester.length == 6 && valstartSemester.charAt(0) === "S" && valstartSemester.charAt(1) === "u" && valstartSemester.charAt(2) === "m" && valstartSemester.charAt(3) === "m" && valstartSemester.charAt(4) === "e" && valstartSemester.charAt(5) === "r")
+                    {
                         validSemester = true; 
-                   }
+                    }
                     else if (valstartSemester.length == 6 && valstartSemester.charAt(0) === "S" && valstartSemester.charAt(1) === "p" && valstartSemester.charAt(2) === "r" && valstartSemester.charAt(3) === "i" && valstartSemester.charAt(4) === "n" && valstartSemester.charAt(5) === "g")
-                   {
+                    {
                         validSemester = true;
-                   }
+                    }
                     else
-                   {
+                    {
                         validSemester = false;
-                   }
+                    }
                 }
 
                 if (validSemester)
@@ -210,23 +213,25 @@
                 }
 
 
-
 //-------------------------------------TOTAL RESULTS----------------------------------------
-                //var messageGlobalResult = document.object.getElementById("messageValid").value;
-                var valtotalResults = false;
-                if (validusername && validstudIDLength && validpass && validSemester && validYear) {
-                    valtotalResults = true;
-                } else {
-                    valtotalResults = false;
-                }
+            //var messageGlobalResult = document.object.getElementById("messageValid").value;
+            var valtotalResults = false;
+            if (validusername && validstudIDLength && validpass && validSemester && validYear) {
+                valtotalResults = true;
+            } else {
+                valtotalResults = false;
+            }
 
-                if (valtotalResults) {
-                    totalResults.innerHTML = "SUCCESS";
-                } else {
-                    totalResults.innerHTML = "FAILURE";
-                }
+            if (valtotalResults) {
+                totalResults.innerHTML = "SUCCESS";
+            } else {
+                totalResults.innerHTML = "FAILURE";
+            //change color of total results if any failiure
+            theBody.setAttribute("class", "bgred"); //change color of total results if any failiure
+   
+            }
+     } //end of buttonClicked
 //-------------------------------------END of button Clicked Function----------------------------------------
-            } //end of buttonClicked
 
             // Function for Message
             function keyPressed(event)
@@ -295,6 +300,8 @@
                 document.getElementById("password").addEventListener("keydown", keyPressed);
                 document.getElementById("startSemester").addEventListener("keydown", keyPressed);
                 document.getElementById("startYear").addEventListener("keydown", keyPressed);
+            
+                theBody = document.getElementById("theBody");
             }
 
             window.addEventListener("load",start);  // initialize function when page loads
@@ -302,7 +309,7 @@
         <!--script ends-->
     </head>
 
-    <body>
+    <body id = "theBody">
          <!--<form class = "form" method ="get">-->
         <form method ="get">
             <label for="username">Username: <input type="text" id="username" name ="username"><br></label><br>
