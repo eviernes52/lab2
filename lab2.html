@@ -24,6 +24,9 @@
             .bgred {
                 background-color: #fe4e4e;
             }
+            .bgnone{
+                background-color: #ffffff;
+            }
         </style>
         <!--Style Ends-->
 
@@ -45,14 +48,13 @@
                 var validusername = false;
                 for (var i = 0; i < valusername.length; i++)
                 {                                                  //how to make spaces not count as lower case letters ??
-                    if ( valusername.charCodeAt(i) >= 97 || valusername.charCodeAt <= 122)   //To lower doesnt work used unicode similar to userID from https://www.ssec.wisc.edu/~tomw/java/unicode.html
+                    if ( valusername.charCodeAt(i) > 96 && valusername.charCodeAt(i) < 123)   //To lower doesnt work used unicode similar to userID from https://www.ssec.wisc.edu/~tomw/java/unicode.html
                     {
                         validusername = true;
                     }
                     else 
                     {
                         validusername = false;
-                    
                     }
                 }
                 
@@ -113,23 +115,23 @@
             //Student ID
             var valstudID = document.getElementById("studID").value;
             var validstudIDLength = false;
-                if (valstudID.length !== 9) 
+                if (valstudID.length === 9) 
                 {
-                    validstudIDLength = false;
-                }
-                else {
-                    for (var i = 0; i < valstudID.length; i++)  //declare loop scanning through all studID characters
-                    {
+                    for (var i = 0; i < valstudID.length; i++) { //declare loop scanning through all studID characters
                     var idChar = valstudID.charAt(i);   //declare variable for each character in studID
-                        if (idChar < '0' || idChar > '9')  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
+                        if (idChar >= '0' && idChar <= '9')  //I tried !isNaN(valstudID.charAt(i) but it would only validate once
                         {                                   //basically copied the keycode keychar example from class and repalced isNaN
-                            validstudIDLength = false;
+                            validstudIDLength = true;
                         }
                         else
                         {
-                            validstudIDLength = true;
+                            validstudIDLength = false;
+                            break;
                         }
                     }
+                }
+                else {
+                    validstudIDLength = false;
                 }
                 //basic loop for if validation is true or false to print out intnernalHTML message
                 if (validstudIDLength)
@@ -194,7 +196,7 @@
                         validYear = false;
                         }
                     }
-                    else if (valstartYear.length == 2 && valstartYear.charAt(0) === '2' && valstartYear.charAt(1) <= '3' || valstartYear.length == 2 && valstartYear.charAt(0) <= '1' && valstartYear.charAt(1) <= '9'){
+                    else if (valstartYear.length == 2 && valstartYear.charAt(0) === '2' && valstartYear.charAt(1) <= '3' && valstartYear.charAt(1) >= '0' || valstartYear.length == 2 && valstartYear.charAt(0) <= '9' && valstartYear.charAt(0) >= '0'  && valstartYear.charAt(1) <= '9' && valstartYear.charAt(1) >= '0'){
                         validYear = true;
                     }
                     else
@@ -224,11 +226,12 @@
 
             if (valtotalResults) {
                 totalResults.innerHTML = "SUCCESS";
+                theBody.setAttribute("class", "bgnone"); //change color of total results if all success
+                
             } else {
                 totalResults.innerHTML = "FAILURE";
             //change color of total results if any failiure
-            theBody.setAttribute("class", "bgred"); //change color of total results if any failiure
-   
+            theBody.setAttribute("class", "bgred"); //change color of total results if any failiures
             }
      } //end of buttonClicked
 //-------------------------------------END of button Clicked Function----------------------------------------
@@ -248,7 +251,7 @@
                 var numWords = words.length;
                 document.getElementById("numwords").innerHTML = numWords;
                 var messageValid
-                if (numWords > 25)
+                if (numWords > 25 || numWords < 1)
                     {
                          messageValid = false;
                          document.getElementById("theTextArea").disabled = true;
