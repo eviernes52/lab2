@@ -21,6 +21,9 @@
                 display: block;
                 text-align: left;
             }
+            .bgcolor {
+                background-color: #fe4e4e;
+            }
         </style>
         <!--Style Ends-->
 
@@ -33,10 +36,7 @@
             {
                 var MessageResults = document.getElementById("MessageResults");
                 var studIDresults = document.getElementById("studIDresults");
-//-------------------------------------TOTAL RESULTS----------------------------------------
-
-//------------------------------------------------------------------------------------------
-            //Username
+         //Username
             //determine if text only contains only lower-case letters
             var valusername = document.getElementById("username").value;
             var validusername = false;
@@ -153,7 +153,7 @@
                    {
                         validSemester = true;
                    }
-                   else if (valstartSemester.length == 6 && valstartSemester.charAt(0) === "S" && valstartSemester.charAt(1) === "u" && val.charAt(2) === "m" && valstartSemester.charAt(3) === "m" && valstartSemester.charAt(4) === "m" && valstartSemester.charAt(5) === "e" && valstartSemester.charAt(6) === "r")
+                   else if (valstartSemester.length == 6 && valstartSemester.charAt(0) === "S" && valstartSemester.charAt(1) === "u" && valstartSemester.charAt(2) === "m" && valstartSemester.charAt(3) === "m" && valstartSemester.charAt(4) === "e" && valstartSemester.charAt(5) === "r")
                    {
                         validSemester = true; 
                    }
@@ -178,22 +178,26 @@
 
 
 
-
-
                 for (var i = 0; i < valstartYear.length; i++)
                 {
-                    if (valstartYear.length == 4 && valstartYear.charAt(0) <= 50 && valstartYear.charAt(1) <= 48 && valstartYear.charAt(2) <= 50 && valstartYear.charAt(3) <= 51 || valstartYear.length == 4 && valstartYear.charAt(0) <= 49 && valstartYear.charAt(1) <= 57 && valstartYear.charAt(2) <= 57 && valstartYear.charAt(3) <= 57 )
-                   {
-                        validYear = true;
-                   }
-                   else if (valstartYear.length == 2 && valstartYear.charAt(0) == 50 && valstartYear.charAt(1) <= 51 || valstartYear.length == 2 && valstartYear.charAt(0) <= 57 && valstartYear.charAt(1) <= 57 )
-                   {
-                        validYear = true; 
-                   }
-                    else
-                   {
+                    if (valstartYear.length == 4)
+                    {
+                        if (valstartYear.charAt(0) === '2' && valstartYear.charAt(1) === '0' && valstartYear.charAt(2) <= "2" && valstartYear.charAt(3) <= '3' || valstartYear.length == 4 && valstartYear.charAt(0) === '1' && valstartYear.charAt(1) <= 57 && valstartYear.charAt(2) <= '9' && valstartYear.charAt(3) <= '9' )
+                        {
+                            validYear = true;
+                        }   
+                        else
+                        {
                         validYear = false;
-                   }
+                        }
+                    }
+                    else if (valstartYear.length == 2 && valstartYear.charAt(0) === '2' && valstartYear.charAt(1) <= '3' || valstartYear.length == 2 && valstartYear.charAt(0) <= '1' && valstartYear.charAt(1) <= '9'){
+                        validYear = true;
+                    }
+                    else
+                    {
+                        validYear = false;
+                    }
                 }
 
                 if (validYear)
@@ -311,7 +315,7 @@
 
             <label>Enter Message Here: <textarea id="theTextArea"></textarea><br></label><br>
 
-            <button type="button" id="Submitbutton" name="button" onclick="buttonClicked()">Submit</button>
+            <button type="button" id="Submitbutton" name="button">Submit</button>
         </form>
         <hr>
         <strong>Result (S or F)</strong><br><br>
