@@ -1,2 +1,2 @@
-# lab2 JavaScript Form Validation
-Simple registration form
+#JavaScript Form Validation
+Simple school semester registration form
